@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sowndappan S | Applied AI Engineer</title>
+    <meta name="description"
+        content="Portfolio of Sowndappan S, an Applied AI Engineer specializing in LLM applications, Agentic AI, Machine Learning, Recommendation Systems, and AI product development.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    boxShadow: {
+                        'soft': '0 20px 40px -15px rgba(0,0,0,0.05)',
+                        'floating': '0 30px 60px -20px rgba(0,0,0,0.08)',
+                        'inner-soft': 'inset 0 2px 4px 0 rgba(0,0,0,0.02)'
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FAFAFA;
+            color: #111111;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        html.dark body { background-color: #0A0A0A; color: #F5F5F5; }
+
+        .glass-nav {
+            background: rgba(250, 250, 250, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+        }
+        html.dark .glass-nav {
+            background: rgba(10, 10, 10, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .hero-bg {
+            background: radial-gradient(circle at center, #FFFFFF 0%, #FAFAFA 70%);
+            position: relative;
+        }
+        html.dark .hero-bg {
+            background: radial-gradient(circle at center, #111111 0%, #0A0A0A 70%);
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.02) 0%, transparent 60%);
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        html.dark .hero-bg::before {
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 60%);
+        }
+
+        .card-hover { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .card-hover:hover { transform: translateY(-8px); box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.1); }
+        html.dark .card-hover:hover { box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.5); }
+
+        .section-badge {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 6px 16px; background: #FFFFFF; border: 1px solid #EAEAEA;
+            border-radius: 100px; font-size: 0.7rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.05em; color: #666;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02); margin-bottom: 1.5rem;
+        }
+        html.dark .section-badge { background: #171717; border-color: #2A2A2A; color: #999; }
+
+        .section-title { font-size: 2.5rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 1rem; color: #111; text-align: center; }
+        html.dark .section-title { color: #F5F5F5; }
+
+        .section-subtitle { font-size: 1.1rem; color: #666; text-align: center; margin-bottom: 4rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+        html.dark .section-subtitle { color: #999; }
+
+        .btn-primary {
+            background-color: #111; color: #FFF; border-radius: 8px; font-weight: 500;
+            padding: 12px 24px; transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 8px;
+        }
+        .btn-primary:hover { background-color: #333; transform: scale(1.02); }
+        html.dark .btn-primary { background-color: #F5F5F5; color: #111; }
+        html.dark .btn-primary:hover { background-color: #FFFFFF; }
+
+        .btn-secondary {
+            background-color: #FFF; color: #111; border: 1px solid #EAEAEA; border-radius: 8px;
+            font-weight: 500; padding: 12px 24px; transition: all 0.2s ease; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+        }
+        .btn-secondary:hover { border-color: #CCC; transform: scale(1.02); }
+        html.dark .btn-secondary { background-color: #171717; color: #F5F5F5; border-color: #2A2A2A; }
+
+        .surface { background-color: #FFFFFF; }
+        html.dark .surface { background-color: #141414; }
+        .surface-alt { background-color: #F9FAFB; }
+        html.dark .surface-alt { background-color: #101010; }
+        .border-subtle { border-color: #EAEAEA; }
+        html.dark .border-subtle { border-color: #262626; }
+        .text-strong { color: #111111; }
+        html.dark .text-strong { color: #F5F5F5; }
+        .text-body { color: #374151; }
+        html.dark .text-body { color: #D4D4D4; }
+        .text-muted { color: #6B7280; }
+        html.dark .text-muted { color: #9CA3AF; }
+        .icon-chip { background-color: #111827; color: #fff; }
+        html.dark .icon-chip { background-color: #F5F5F5; color: #111; }
+
+        .project-visual {
+            background: linear-gradient(135deg, #F3F4F6 0%, #E5E7EB 100%);
+        }
+        html.dark .project-visual { background: linear-gradient(135deg, #1A1A1A 0%, #262626 100%); }
+
+        input, textarea {
+            background-color: #FFFFFF; border: 1px solid #EAEAEA; color: #111;
+        }
+        html.dark input, html.dark textarea { background-color: #171717; border-color: #2A2A2A; color: #F5F5F5; }
+
+        #mobile-menu { transition: max-height 0.3s ease, opacity 0.3s ease; }
+
+        .scrollbar-none::-webkit-scrollbar { display: none; }
+        .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-gray-200 selection:text-black">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="#hero" class="flex-shrink-0 flex items-center gap-2">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="10" width="10" height="10" rx="2" transform="rotate(-45 2 10)" fill="currentColor" class="text-strong" />
+                        <rect x="10" y="18" width="10" height="10" rx="2" transform="rotate(-45 10 18)" fill="currentColor" class="text-strong" />
+                    </svg>
+                    <span class="text-xl font-semibold tracking-tight text-strong">Sowndappan S.</span>
+                </a>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#about" class="text-muted hover:text-black dark:hover:text-white transition-colors px-3 py-2 text-sm font-medium">About</a>
+                        <a href="#experience" class="text-muted hover:text-black dark:hover:text-white transition-colors px-3 py-2 text-sm font-medium">Experience</a>
+                        <a href="#projects" class="text-muted hover:text-black dark:hover:text-white transition-colors px-3 py-2 text-sm font-medium">Projects</a>
+                        <a href="#skills" class="text-muted hover:text-black dark:hover:text-white transition-colors px-3 py-2 text-sm font-medium">Skills</a>
+                        <a href="#contact" class="text-muted hover:text-black dark:hover:text-white transition-colors px-3 py-2 text-sm font-medium">Contact</a>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center gap-3">
+                    <button id="theme-toggle" aria-label="Toggle dark mode" class="w-9 h-9 flex items-center justify-center rounded-full border border-subtle text-muted hover:text-black dark:hover:text-white transition-colors">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:inline"></i>
+                    </button>
+                    <a href="#contact" class="btn-primary py-2 px-5 text-sm">Contact Me</a>
+                </div>
+                <!-- Mobile controls -->
+                <div class="flex md:hidden items-center gap-2">
+                    <button id="theme-toggle-mobile" aria-label="Toggle dark mode" class="w-9 h-9 flex items-center justify-center rounded-full border border-subtle text-muted">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:inline"></i>
+                    </button>
+                    <button id="menu-btn" aria-label="Open menu" aria-expanded="false" class="w-9 h-9 flex items-center justify-center rounded-full border border-subtle text-strong">
+                        <i class="fas fa-bars" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden overflow-hidden max-h-0 opacity-0 surface border-t border-subtle">
+            <div class="px-4 py-4 flex flex-col space-y-1">
+                <a href="#about" class="mobile-link text-body px-3 py-3 text-sm font-medium rounded-lg">About</a>
+                <a href="#experience" class="mobile-link text-body px-3 py-3 text-sm font-medium rounded-lg">Experience</a>
+                <a href="#projects" class="mobile-link text-body px-3 py-3 text-sm font-medium rounded-lg">Projects</a>
+                <a href="#skills" class="mobile-link text-body px-3 py-3 text-sm font-medium rounded-lg">Skills</a>
+                <a href="#contact" class="btn-primary justify-center mt-2">Contact Me</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero"
+        class="hero-bg pt-40 pb-20 md:pt-56 md:pb-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-[90vh] flex flex-col items-center justify-center relative overflow-hidden">
+        <div class="text-center z-10 space-y-6 max-w-4xl animate-fade-in-up">
+            <div class="inline-flex items-center space-x-2 surface border border-subtle rounded-full px-4 py-1.5 text-xs font-semibold text-muted shadow-sm">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2L15 8.5L22 9.5L17 14L18.5 21L12 17.5L5.5 21L7 14L2 9.5L9 8.5L12 2Z" />
+                </svg>
+                <span>APPLIED AI ENGINEER</span>
+            </div>
+
+            <h1 class="text-5xl sm:text-6xl md:text-8xl font-semibold tracking-tight leading-tight text-strong">
+                Building AI <br />
+                <span class="text-muted">that executes.</span>
+            </h1>
+
+            <p class="text-lg sm:text-xl text-muted max-w-2xl mx-auto leading-relaxed mt-6">
+                Specializing in LLM applications, Agentic Architecture, and scalable Backend Systems. I translate
+                complex research into reliable APIs and autonomous agents.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4 pt-8">
+                <a href="#projects" class="btn-primary">View Featured Projects <i class="fas fa-arrow-right text-xs ml-1"></i></a>
+                <a href="assets/Sowndappan_S_Resume.pdf" download class="btn-secondary"><i class="fas fa-download mr-1"></i> Download Resume</a>
+                <a href="https://github.com/sowndappan5" target="_blank" rel="noopener" class="btn-secondary"><i class="fab fa-github mr-1"></i> GitHub</a>
+                <a href="https://www.linkedin.com/in/sowndappan" target="_blank" rel="noopener" class="btn-secondary"><i class="fab fa-linkedin mr-1"></i> LinkedIn</a>
+            </div>
+        </div>
+
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-gray-100 dark:from-gray-800 to-transparent rounded-full blur-3xl opacity-50 -z-10 animate-float"></div>
+    </section>
+
+    <!-- About & Experience Section -->
+    <section id="about" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <div class="section-badge"><i class="fas fa-user mr-2"></i> ABOUT</div>
+            <h2 class="section-title">Core Competencies</h2>
+            <p class="section-subtitle">Bridging the gap between research and production.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="surface p-8 rounded-3xl border border-subtle shadow-soft card-hover flex flex-col items-center text-center">
+                <div class="w-20 h-20 rounded-full surface-alt flex items-center justify-center mb-6 border border-subtle shadow-inner-soft">
+                    <i class="fas fa-server text-2xl text-body"></i>
+                </div>
+                <h3 class="text-lg font-semibold mb-3 text-strong">Production APIs</h3>
+                <p class="text-muted text-sm leading-relaxed">Architected and deployed 10+ production ML APIs on AWS Lambda handling thousands of daily requests.</p>
+            </div>
+
+            <div class="surface p-8 rounded-3xl border border-subtle shadow-soft card-hover flex flex-col items-center text-center">
+                <div class="w-20 h-20 rounded-full surface-alt flex items-center justify-center mb-6 border border-subtle shadow-inner-soft">
+                    <i class="fas fa-compress-arrows-alt text-2xl text-body"></i>
+                </div>
+                <h3 class="text-lg font-semibold mb-3 text-strong">Model Efficiency</h3>
+                <p class="text-muted text-sm leading-relaxed">Achieved 99% parameter reduction via LoRA/QLoRA fine-tuning for cost-effective single-GPU inference.</p>
+            </div>
+
+            <div class="surface p-8 rounded-3xl border border-subtle shadow-soft card-hover flex flex-col items-center text-center">
+                <div class="w-20 h-20 rounded-full surface-alt flex items-center justify-center mb-6 border border-subtle shadow-inner-soft">
+                    <i class="fas fa-network-wired text-2xl text-body"></i>
+                </div>
+                <h3 class="text-lg font-semibold mb-3 text-strong">Agentic Systems</h3>
+                <p class="text-muted text-sm leading-relaxed">Built self-extending LangGraph agents with 50+ dynamic tools achieving 100% execution accuracy.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-24 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+        <div class="text-center mb-16">
+            <div class="section-badge"><i class="fas fa-briefcase mr-2"></i> EXPERIENCE</div>
+            <h2 class="section-title">Professional Journey</h2>
+            <p class="section-subtitle">Real-world AI deployment and engineering.</p>
+        </div>
+
+        <div class="surface rounded-3xl border border-subtle shadow-soft p-8 md:p-12 relative overflow-hidden">
+            <div class="absolute left-[39px] md:left-[55px] top-12 bottom-12 w-px bg-gray-200 dark:bg-gray-700 z-0"></div>
+
+            <div class="relative z-10 flex gap-6 md:gap-8">
+                <div class="flex-shrink-0 w-12 h-12 icon-chip rounded-full flex items-center justify-center border-4 surface shadow-sm mt-1">
+                    <i class="fas fa-laptop-code text-sm"></i>
+                </div>
+                <div>
+                    <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
+                        <h3 class="text-2xl font-bold text-strong">Data Science Intern (AI/LLM Focus)</h3>
+                        <span class="text-sm font-semibold text-muted surface-alt px-3 py-1 rounded-full mt-2 md:mt-0 w-max">Sep 2025 &ndash; Present</span>
+                    </div>
+                    <p class="text-sm text-muted mb-6 font-medium">Logesys Solutions India Pvt. Ltd &middot; Bengaluru, India</p>
+                    <ul class="space-y-4 text-body">
+                        <li class="flex items-start">
+                            <i class="fas fa-arrow-right text-gray-300 dark:text-gray-600 mt-1.5 mr-3 flex-shrink-0 text-sm"></i>
+                            <span><strong class="text-strong">Production AI APIs:</strong> Architected and deployed 10+
+                                APIs on AWS Lambda, handling 500+ daily requests across 10,000+ interactions for an
+                                EdTech platform.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-arrow-right text-gray-300 dark:text-gray-600 mt-1.5 mr-3 flex-shrink-0 text-sm"></i>
+                            <span><strong class="text-strong">Adaptive Learning:</strong> Built NLP-based question generation models via
+                                LangChain & Gemini API, producing 1,000+ structured questions and reducing manual effort
+                                by 40%.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-arrow-right text-gray-300 dark:text-gray-600 mt-1.5 mr-3 flex-shrink-0 text-sm"></i>
+                            <span><strong class="text-strong">Recommendation Systems:</strong> Engineered personalization models translating
+                                learner data into feature signals for downstream ranking algorithms.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-arrow-right text-gray-300 dark:text-gray-600 mt-1.5 mr-3 flex-shrink-0 text-sm"></i>
+                            <span><strong class="text-strong">MLOps & Monitoring:</strong> Implemented production monitoring via AWS
+                                CloudWatch, accelerating iteration cycles by tightly coupling feedback to prompt/model
+                                design.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 px-4 sm:px-6 lg:px-8 surface-alt">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <div class="section-badge"><i class="fas fa-layer-group mr-2"></i> FEATURED PROJECTS</div>
+                <h2 class="section-title">Selected Work</h2>
+                <p class="section-subtitle">Engineering scalable systems and pushing AI boundaries.</p>
+            </div>
+
+            <!-- Projects Carousel Section -->
+            <div class="relative group">
+                <!-- Left Navigation Button -->
+                <button id="prev-project" class="absolute -left-4 md:-left-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full surface border border-subtle shadow-md hover:shadow-lg flex items-center justify-center text-muted hover:text-strong transition-all focus:outline-none hidden md:flex">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+
+                <!-- Scroll Wrapper -->
+                <div id="projects-carousel" class="flex gap-6 overflow-x-auto scrollbar-none snap-x snap-mandatory scroll-smooth pb-6">
+                    <!-- Project 1 -->
+                    <a href="adaptbot.html" class="snap-start shrink-0 w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] surface rounded-3xl border border-subtle shadow-soft card-hover overflow-hidden flex flex-col p-6">
+                        <div class="h-48 project-visual rounded-2xl mb-6 flex items-center justify-center border border-subtle">
+                            <i class="fas fa-robot text-6xl text-gray-400 dark:text-gray-500"></i>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-lg icon-chip flex items-center justify-center flex-shrink-0"><i class="fas fa-robot"></i></div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2 text-strong">AdaptBot Framework</h3>
+                                <p class="text-muted text-sm leading-relaxed">Dynamic LLM agent orchestration with
+                                    runtime tool generation. Benchmarked at 93.2% intent classification against
+                                    GPT-OSS-120B.</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Project 2 -->
+                    <a href="rag-benchmark.html" class="snap-start shrink-0 w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] surface rounded-3xl border border-subtle shadow-soft card-hover overflow-hidden flex flex-col p-6">
+                        <div class="h-48 project-visual rounded-2xl mb-6 flex items-center justify-center border border-subtle">
+                            <i class="fas fa-database text-6xl text-gray-400 dark:text-gray-500"></i>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-lg icon-chip flex items-center justify-center flex-shrink-0"><i class="fas fa-database"></i></div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2 text-strong">Production RAG API</h3>
+                                <p class="text-muted text-sm leading-relaxed">Rigorous evaluation of chunking strategies
+                                    across 1,000+ chunks. Improved retrieval coverage to 68% with sub-second FastAPI
+                                    endpoints.</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Project 3 -->
+                    <a href="lora-finetuning.html" class="snap-start shrink-0 w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] surface rounded-3xl border border-subtle shadow-soft card-hover overflow-hidden flex flex-col p-6">
+                        <div class="h-48 project-visual rounded-2xl mb-6 flex items-center justify-center border border-subtle">
+                            <i class="fas fa-sliders-h text-6xl text-gray-400 dark:text-gray-500"></i>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-lg icon-chip flex items-center justify-center flex-shrink-0"><i class="fas fa-sliders-h"></i></div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2 text-strong">LoRA Fine-Tuning</h3>
+                                <p class="text-muted text-sm leading-relaxed">Fine-tuned Qwen2.5-1.5B on 5,000 commits
+                                    via 4-bit NF4 quantization. Reduced parameters by ~99% for single-GPU inference.</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Project 4 -->
+                    <a href="forest-fire.html" class="snap-start shrink-0 w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] surface rounded-3xl border border-subtle shadow-soft card-hover overflow-hidden flex flex-col p-6">
+                        <div class="h-48 project-visual rounded-2xl mb-6 flex items-center justify-center border border-subtle">
+                            <i class="fas fa-fire text-6xl text-gray-400 dark:text-gray-500"></i>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-lg icon-chip flex items-center justify-center flex-shrink-0"><i class="fas fa-fire"></i></div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2 text-strong">Distance Estimation Vision</h3>
+                                <p class="text-muted text-sm leading-relaxed">YOLOv8 system with O(1) CPU-only distance
+                                    estimation achieving 0.36m MAE. Peer-reviewed and published in IRJET.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Right Navigation Button -->
+                <button id="next-project" class="absolute -right-4 md:-right-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full surface border border-subtle shadow-md hover:shadow-lg flex items-center justify-center text-muted hover:text-strong transition-all focus:outline-none hidden md:flex">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <!-- Dots Indicator -->
+            <div id="carousel-dots" class="flex justify-center gap-2 mt-4">
+                <span class="carousel-dot w-2 h-2 rounded-full bg-gray-900 dark:bg-gray-100 cursor-pointer transition-all duration-300"></span>
+                <span class="carousel-dot w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-700 cursor-pointer transition-all duration-300"></span>
+                <span class="carousel-dot w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-700 cursor-pointer transition-all duration-300"></span>
+                <span class="carousel-dot w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-700 cursor-pointer transition-all duration-300"></span>
+            </div>
+
+            <div class="mt-12 flex justify-center">
+                <a href="https://github.com/sowndappan5" target="_blank" rel="noopener" class="btn-primary">
+                    View GitHub Profile <i class="fab fa-github ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Open Source & Research -->
+    <section class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <div class="section-badge"><i class="fas fa-code-branch mr-2"></i> CONTRIBUTIONS</div>
+            <h2 class="section-title">Open Source & Research</h2>
+            <p class="section-subtitle">Transparent collaboration and peer-reviewed results.</p>
+        </div>
+
+        <div class="surface rounded-3xl border border-subtle shadow-soft p-8 md:p-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-8 text-strong">Open Source</h3>
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="mt-1"><i class="fab fa-github text-xl text-muted"></i></div>
+                            <div>
+                                <h4 class="font-semibold text-strong">DeepSpeed (Microsoft)</h4>
+                                <p class="text-sm text-muted mt-1">Merged 3 PRs improving quantization config parsing
+                                    and optimizer regression testing.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="mt-1"><i class="fab fa-github text-xl text-muted"></i></div>
+                            <div>
+                                <h4 class="font-semibold text-strong">LangChain</h4>
+                                <p class="text-sm text-muted mt-1">Added schema validation checks and regression
+                                    tests for structured-output API reliability.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="mt-1"><i class="fab fa-github text-xl text-muted"></i></div>
+                            <div>
+                                <h4 class="font-semibold text-strong">Recursion Pharma (GFlowNet)</h4>
+                                <p class="text-sm text-muted mt-1">Optimized graph-processing via lightweight
+                                    pre-filtering, cutting isomorphism checks by 3&ndash;7%.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="mt-1"><i class="fab fa-github text-xl text-muted"></i></div>
+                            <div>
+                                <h4 class="font-semibold text-strong">Caura AI</h4>
+                                <p class="text-sm text-muted mt-1">Improved MCP search validation and built
+                                    fault-tolerant memory enrichment with automatic fallback and test coverage.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold mb-8 text-strong">Publications & Certifications</h3>
+                    <div class="surface-alt rounded-2xl p-6 border border-subtle">
+                        <div class="flex items-center gap-2 mb-3 text-xs font-bold text-muted uppercase tracking-wide">
+                            <i class="fas fa-book-open"></i> IRJET, Vol. 13, Apr 2026
+                        </div>
+                        <h4 class="font-semibold text-strong mb-2 leading-tight">Monocular Object Distance Estimation
+                            using Calibration-Based Perspective Mapping</h4>
+                        <p class="text-sm text-body">Proposed a novel O(1) CPU-only real-time inference method
+                            achieving 98% interval accuracy and 0.36m MAE without LiDAR hardware.</p>
+                    </div>
+
+                    <div class="surface-alt rounded-2xl p-6 border border-subtle mt-6">
+                        <div class="flex items-center gap-2 mb-3 text-xs font-bold text-yellow-600 dark:text-yellow-500 uppercase tracking-wide">
+                            <i class="fas fa-trophy"></i> Best Student Project
+                        </div>
+                        <h4 class="font-semibold text-strong mb-2 leading-tight">Top 5, Alliance University Hackathon</h4>
+                        <p class="text-sm text-body">Awarded by Computer Society of India for AI-based forest fire
+                            detection system.</p>
+                    </div>
+
+                    <div class="surface-alt rounded-2xl p-6 border border-subtle mt-6 flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-white dark:bg-gray-800 flex items-center justify-center flex-shrink-0 border border-subtle shadow-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23" class="w-7 h-7">
+                                <path fill="#f35325" d="M0 0h10.5v10.5H0z"/>
+                                <path fill="#81bc06" d="M12.5 0h10.5v10.5H12.5z"/>
+                                <path fill="#05a6f0" d="M0 12.5h10.5v10.5H0z"/>
+                                <path fill="#ffba08" d="M12.5 12.5h10.5v10.5H12.5z"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center gap-2 mb-1.5 text-xs font-bold text-blue-600 dark:text-blue-500 uppercase tracking-wide">
+                                Professional Certificate
+                            </div>
+                            <h4 class="font-semibold text-strong mb-1 leading-tight text-lg">Microsoft AI & ML Engineering</h4>
+                            <p class="text-sm text-body mb-3">Issued by Microsoft via Coursera.</p>
+                            <a href="https://www.coursera.org/account/accomplishments/professional-cert/certificate/AOKEHGPP8V4N" target="_blank" rel="noopener" class="inline-flex items-center text-xs text-blue-500 hover:underline font-mono">
+                                ID: AOKEHGPP8V4N <i class="fas fa-external-link-alt ml-1.5 text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 px-4 sm:px-6 lg:px-8 surface-alt border-t border-subtle">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <div class="section-badge"><i class="fas fa-sliders-h mr-2"></i> EXPERTISE</div>
+                <h2 class="section-title">Technical Skills</h2>
+                <p class="section-subtitle">A comprehensive toolkit for full-stack AI product development.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="surface p-8 rounded-3xl border border-subtle shadow-soft card-hover">
+                    <div class="w-12 h-12 rounded-xl icon-chip flex items-center justify-center mb-6"><i class="fas fa-code text-xl"></i></div>
+                    <h3 class="text-lg font-semibold mb-4 text-strong">Programming Languages</h3>
+                    <ul class="space-y-3 text-sm text-muted">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i> Python</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i> SQL</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i> Bash / Shell</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i> JavaScript (basics)</li>
+                    </ul>
+                </div>
+
+                <div class="surface p-8 rounded-3xl border border-subtle shadow-soft card-hover">
+                    <div class="w-12 h-12 rounded-xl icon-chip flex items-center justify-center mb-6"><i class="fas fa-brain text-xl"></i></div>
+                    <h3 class="text-lg font-semibold mb-4 text-strong">LLM & Agentic AI</h3>
+                    <ul class="space-y-3 text-sm text-muted">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i> LangChain & LangGraph</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i> Agentic Orchestration</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i> Advanced RAG pipelines</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i> Structured Outputs</li>
+                    </ul>
+                </div>
+
+                <div class="surface p-8 rounded-3xl border border-subtle shadow-soft card-hover">
+                    <div class="w-12 h-12 rounded-xl icon-chip flex items-center justify-center mb-6"><i class="fas fa-microchip text-xl"></i></div>
+                    <h3 class="text-lg font-semibold mb-4 text-strong">Machine Learning & DL</h3>
+                    <ul class="space-y-3 text-sm text-muted">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i> PyTorch & Transformers</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i> LoRA / QLoRA Fine-Tuning</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i> YOLOv8 & OpenCV</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i> Model Evaluation</li>
+                    </ul>
+                </div>
+
+                <div class="surface p-8 rounded-3xl border border-subtle shadow-soft card-hover">
+                    <div class="w-12 h-12 rounded-xl icon-chip flex items-center justify-center mb-6"><i class="fas fa-server text-xl"></i></div>
+                    <h3 class="text-lg font-semibold mb-4 text-strong">Backend & APIs</h3>
+                    <ul class="space-y-3 text-sm text-muted">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i> FastAPI & Flask</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i> REST API Design</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i> Pydantic & Async Python</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i> Rate Limiting</li>
+                    </ul>
+                </div>
+
+                <div class="surface p-8 rounded-3xl border border-subtle shadow-soft card-hover">
+                    <div class="w-12 h-12 rounded-xl icon-chip flex items-center justify-center mb-6"><i class="fas fa-database text-xl"></i></div>
+                    <h3 class="text-lg font-semibold mb-4 text-strong">Databases & Vector Stores</h3>
+                    <ul class="space-y-3 text-sm text-muted">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i> PostgreSQL</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i> MongoDB / MySQL</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i> ChromaDB (Vector)</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i> Embedding-based Retrieval</li>
+                    </ul>
+                </div>
+
+                <div class="surface p-8 rounded-3xl border border-subtle shadow-soft card-hover">
+                    <div class="w-12 h-12 rounded-xl icon-chip flex items-center justify-center mb-6"><i class="fas fa-cloud text-xl"></i></div>
+                    <h3 class="text-lg font-semibold mb-4 text-strong">Cloud & DevOps</h3>
+                    <ul class="space-y-3 text-sm text-muted">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i> AWS Lambda</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i> AWS CloudWatch</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i> Linux & Bash</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i> Git & CI/CD pipelines</li>
+                    </ul>
+                </div>
+
+                <div class="surface p-8 rounded-3xl border border-subtle shadow-soft card-hover">
+                    <div class="w-12 h-12 rounded-xl icon-chip flex items-center justify-center mb-6"><i class="fas fa-tools text-xl"></i></div>
+                    <h3 class="text-lg font-semibold mb-4 text-strong">Developer Tools</h3>
+                    <ul class="space-y-3 text-sm text-muted">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i> Git & GitHub</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i> Docker (basics)</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i> Postman</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i> VS Code</li>
+                    </ul>
+                </div>
+
+                <div class="surface p-8 rounded-3xl border border-subtle shadow-soft card-hover">
+                    <div class="w-12 h-12 rounded-xl icon-chip flex items-center justify-center mb-6"><i class="fas fa-layer-group text-xl"></i></div>
+                    <h3 class="text-lg font-semibold mb-4 text-strong">AI Infrastructure</h3>
+                    <ul class="space-y-3 text-sm text-muted">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i> Gemini & Groq APIs</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i> PEFT / TRL / SFTTrainer</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i> Quantization (4-bit NF4)</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i> Model Monitoring</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <footer id="contact" class="surface border-t border-subtle py-16">
+        <div class="max-w-3xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-strong mb-3">Let's Connect</h2>
+                <p class="text-muted">Bengaluru, India &middot; sowndappan610@gmail.com &middot; +91 7200339151</p>
+            </div>
+
+            <form action="https://formsubmit.co/sowndappan610@gmail.com" method="POST"
+                class="surface-alt border border-subtle rounded-3xl p-6 md:p-8 space-y-4 mb-10">
+                <input type="hidden" name="_subject" value="New portfolio contact message">
+                <input type="hidden" name="_captcha" value="false">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input type="text" name="name" required placeholder="Your name" class="w-full rounded-xl px-4 py-3 text-sm outline-none">
+                    <input type="email" name="email" required placeholder="Your email" class="w-full rounded-xl px-4 py-3 text-sm outline-none">
+                </div>
+                <textarea name="message" required rows="4" placeholder="Your message" class="w-full rounded-xl px-4 py-3 text-sm outline-none"></textarea>
+                <button type="submit" class="btn-primary w-full justify-center">Send Message <i class="fas fa-paper-plane ml-1"></i></button>
+                <p class="text-xs text-muted text-center">Sent directly to my inbox via FormSubmit &mdash; no data stored on this site.</p>
+            </form>
+
+            <div class="flex justify-center gap-4 mb-12">
+                <a href="mailto:sowndappan610@gmail.com" class="btn-secondary"><i class="fas fa-envelope mr-2"></i> Email</a>
+                <a href="https://www.linkedin.com/in/sowndappan" target="_blank" rel="noopener" class="btn-secondary"><i class="fab fa-linkedin mr-2"></i> LinkedIn</a>
+                <a href="https://github.com/sowndappan5" target="_blank" rel="noopener" class="btn-secondary"><i class="fab fa-github mr-2"></i> GitHub</a>
+            </div>
+            <p class="text-muted text-sm text-center">&copy; 2026 Sowndappan S.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dark mode
+        const root = document.documentElement;
+        const stored = localStorage.getItem('theme');
+        if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            root.classList.add('dark');
+        }
+        function toggleTheme() {
+            root.classList.toggle('dark');
+            localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light');
+        }
+        document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+        document.getElementById('theme-toggle-mobile').addEventListener('click', toggleTheme);
+
+        // Mobile menu
+        const menuBtn = document.getElementById('menu-btn');
+        const menuIcon = document.getElementById('menu-icon');
+        const mobileMenu = document.getElementById('mobile-menu');
+        let menuOpen = false;
+        menuBtn.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            menuBtn.setAttribute('aria-expanded', menuOpen);
+            if (menuOpen) {
+                mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 'px';
+                mobileMenu.style.opacity = '1';
+                menuIcon.classList.replace('fa-bars', 'fa-xmark');
+            } else {
+                mobileMenu.style.maxHeight = '0';
+                mobileMenu.style.opacity = '0';
+                menuIcon.classList.replace('fa-xmark', 'fa-bars');
+            }
+        });
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => menuBtn.click());
+        });
+
+        // Carousel Navigation
+        const carousel = document.getElementById('projects-carousel');
+        const prevBtn = document.getElementById('prev-project');
+        const nextBtn = document.getElementById('next-project');
+        const dots = document.querySelectorAll('.carousel-dot');
+
+        if (carousel && prevBtn && nextBtn) {
+            const scrollAmount = () => carousel.clientWidth;
+
+            prevBtn.addEventListener('click', () => {
+                carousel.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+            });
+
+            nextBtn.addEventListener('click', () => {
+                carousel.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+            });
+
+            // Update dots and visibility of buttons on scroll
+            carousel.addEventListener('scroll', () => {
+                const scrollLeft = carousel.scrollLeft;
+                const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+                
+                // Hide/show navigation buttons based on scroll position
+                prevBtn.style.opacity = scrollLeft > 10 ? '1' : '0';
+                prevBtn.style.pointerEvents = scrollLeft > 10 ? 'auto' : 'none';
+                nextBtn.style.opacity = scrollLeft < maxScroll - 10 ? '1' : '0';
+                nextBtn.style.pointerEvents = scrollLeft < maxScroll - 10 ? 'auto' : 'none';
+
+                // Update active dot
+                const activeIndex = Math.round(scrollLeft / (carousel.scrollWidth / dots.length));
+                dots.forEach((dot, idx) => {
+                    if (idx === activeIndex) {
+                        dot.classList.remove('bg-gray-300', 'dark:bg-gray-700');
+                        dot.classList.add('bg-gray-900', 'dark:bg-gray-100');
+                    } else {
+                        dot.classList.remove('bg-gray-900', 'dark:bg-gray-100');
+                        dot.classList.add('bg-gray-300', 'dark:bg-gray-700');
+                    }
+                });
+            });
+
+            // Dot click event
+            dots.forEach((dot, idx) => {
+                dot.addEventListener('click', () => {
+                    const scrollPosition = (carousel.scrollWidth / dots.length) * idx;
+                    carousel.scrollTo({ left: scrollPosition, behavior: 'smooth' });
+                });
+            });
+
+            // Trigger scroll event once to set initial button states
+            setTimeout(() => {
+                carousel.dispatchEvent(new Event('scroll'));
+            }, 100);
+        }
+    </script>
+</body>
+
+</html>

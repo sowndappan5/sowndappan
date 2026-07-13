@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoRA Fine-Tuning - Project Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = { darkMode: 'class' };
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #FAFAFA; color: #111111; transition: background-color .3s ease, color .3s ease; }
+        html.dark body { background-color: #0A0A0A; color: #F5F5F5; }
+        .btn-primary { background-color: #111; color: #FFF; border-radius: 8px; font-weight: 500; padding: 10px 20px; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+        .btn-primary:hover { background-color: #333; }
+        html.dark .btn-primary { background-color: #F5F5F5; color: #111; }
+        html.dark .btn-primary:hover { background-color: #FFFFFF; }
+        .glass-nav { background: rgba(250, 250, 250, 0.8); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(0,0,0,0.03); }
+        html.dark .glass-nav { background: rgba(10,10,10,0.8); border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .surface { background-color: #FFFFFF; } html.dark .surface { background-color: #141414; }
+        .surface-alt { background-color: #F9FAFB; } html.dark .surface-alt { background-color: #101010; }
+        .border-subtle { border-color: #EAEAEA; } html.dark .border-subtle { border-color: #262626; }
+        .text-strong { color: #111111; } html.dark .text-strong { color: #F5F5F5; }
+        .text-muted { color: #6B7280; } html.dark .text-muted { color: #9CA3AF; }
+        .project-banner { background: linear-gradient(135deg, #F3F4F6 0%, #E5E7EB 100%); }
+        html.dark .project-banner { background: linear-gradient(135deg, #1A1A1A 0%, #262626 100%); }
+        .content-section h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1.25rem; color: #111; border-bottom: 1px solid #eaeaea; padding-bottom: 0.5rem; }
+        html.dark .content-section h2 { color: #F5F5F5; border-bottom-color: #262626; }
+        .content-section p { color: #555; line-height: 1.7; margin-bottom: 1.5rem; }
+        html.dark .content-section p { color: #B3B3B3; }
+        .content-section ul { list-style-type: disc; margin-left: 1.5rem; color: #555; margin-bottom: 1.5rem; }
+        html.dark .content-section ul { color: #B3B3B3; }
+        .content-section li { margin-bottom: 0.5rem; }
+        html.dark .bg-white { background-color: #141414 !important; }
+        html.dark .bg-gray-50 { background-color: #101010 !important; }
+        html.dark .bg-gray-100 { background-color: #1A1A1A !important; }
+        html.dark .border-gray-100 { border-color: #262626 !important; }
+        html.dark .border-gray-200 { border-color: #2A2A2A !important; }
+        html.dark .text-gray-900 { color: #F5F5F5 !important; }
+        html.dark .text-gray-700 { color: #D4D4D4 !important; }
+        html.dark .text-gray-600 { color: #B3B3B3 !important; }
+        html.dark .text-gray-500 { color: #9CA3AF !important; }
+        html.dark .text-gray-400 { color: #8A8A8A !important; }
+    </style>
+</head>
+<body class="antialiased selection:bg-gray-200 selection:text-black">
+
+    <nav class="p-6 border-b border-gray-100 bg-white sticky top-0 z-50 glass-nav">
+        <div class="max-w-4xl mx-auto flex items-center justify-between">
+            <a href="index.html#projects" class="text-gray-500 hover:text-black transition-colors font-medium text-sm flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                Back to Portfolio
+            </a>
+            <div class="flex items-center gap-3">
+                <button id="theme-toggle" aria-label="Toggle dark mode" class="w-9 h-9 flex items-center justify-center rounded-full border border-gray-200 text-gray-500 hover:text-black transition-colors">
+                    <i class="fas fa-moon dark:hidden"></i>
+                    <i class="fas fa-sun hidden dark:inline"></i>
+                </button>
+                <a href="https://github.com/sowndappan5/commit-message-lora" target="_blank" class="btn-primary text-sm"><i class="fab fa-github"></i> View Repository</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto py-16 px-6">
+        <div class="mb-12">
+            <div class="inline-flex items-center space-x-2 bg-white border border-gray-200 rounded-full px-4 py-1.5 text-xs font-semibold text-gray-600 shadow-sm mb-6">
+                MODEL FINE-TUNING
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 mb-6">Commit Message LoRA Fine-Tuning</h1>
+        </div>
+
+        <div class="project-banner rounded-3xl mb-16 border border-gray-200 h-80 flex items-center justify-center">
+            <i class="fas fa-sliders-h text-8xl text-gray-400"></i>
+        </div>
+
+        <div class="content-section space-y-12">
+            <section>
+                <h2>Problem</h2>
+                <p>Developers often write vague, informal commit messages under pressure (e.g., "fix login bug"). While large language models can rewrite these into clean, professional summaries, deploying a full 7B or 70B parameter model solely for commit formatting is highly cost-inefficient. There is a need for a highly capable but small model that can run efficiently on edge or consumer hardware.</p>
+
+                <div class="bg-gray-900 rounded-2xl p-6 border border-gray-800 font-mono text-sm">
+                    <div class="flex items-start gap-3 mb-3">
+                        <span class="text-gray-500 select-none">Input&nbsp;&nbsp;:</span>
+                        <span class="text-gray-300">fix login bug</span>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-green-400 select-none">Output:</span>
+                        <span class="text-green-300">Fix authentication failure caused by invalid session token handling</span>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Architecture Diagram</h2>
+                <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm mb-6 flex justify-center">
+                     <pre class="font-mono text-sm text-gray-700 bg-gray-50 p-4 rounded-lg w-full overflow-x-auto">
+Raw Kaggle Dataset -> Data Cleaning & Sampling (prepare_dataset.py)
+                              │
+                              ▼
+                        HuggingFace Dataset 
+                              │
+       ┌──────────────────────┼──────────────────────┐
+       ▼                      ▼                      ▼
+  Qwen2.5-1.5B          LoRA Adapters         4-bit Quantization
+       │                      │                      │
+       └──────────────────────┼──────────────────────┘
+                              ▼
+                     TRL SFTTrainer (train.py)
+                              │
+                              ▼
+                       FastAPI Inference Endpoints
+                     </pre>
+                </div>
+            </section>
+
+            <section>
+                <h2>Workflow</h2>
+                <p>The pipeline starts by downloading and cleaning the GitHub Commit Messages dataset from Kaggle, then sampling 5,000 rows for training. The data is tokenized and formatted into instruction templates. Using Parameter-Efficient Fine-Tuning (LoRA) and 4-bit bitsandbytes quantization, the Qwen2.5-1.5B-Instruct model is fine-tuned without modifying all base weights. Finally, the optimized LoRA adapters are loaded into a PyTorch inference script capable of generating professional commit summaries on a single GPU.</p>
+            </section>
+
+            <section>
+                <h2>Tech Stack</h2>
+                <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden mb-4">
+                    <table class="w-full text-sm text-left">
+                        <thead>
+                            <tr class="bg-gray-50 text-gray-500 text-xs uppercase tracking-wide">
+                                <th class="px-5 py-3 font-semibold">Component</th>
+                                <th class="px-5 py-3 font-semibold">Tool</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100">
+                            <tr><td class="px-5 py-3 font-medium text-gray-900">Base Model</td><td class="px-5 py-3 text-gray-600 font-mono text-xs">Qwen/Qwen2.5-1.5B-Instruct</td></tr>
+                            <tr><td class="px-5 py-3 font-medium text-gray-900">Fine-Tuning</td><td class="px-5 py-3 text-gray-600">LoRA via 🤗 PEFT</td></tr>
+                            <tr><td class="px-5 py-3 font-medium text-gray-900">Trainer</td><td class="px-5 py-3 text-gray-600">TRL SFTTrainer</td></tr>
+                            <tr><td class="px-5 py-3 font-medium text-gray-900">Quantization</td><td class="px-5 py-3 text-gray-600">4-bit (bitsandbytes)</td></tr>
+                            <tr><td class="px-5 py-3 font-medium text-gray-900">Dataset</td><td class="px-5 py-3 text-gray-600">GitHub Commit Messages &mdash; Kaggle</td></tr>
+                            <tr><td class="px-5 py-3 font-medium text-gray-900">Framework</td><td class="px-5 py-3 text-gray-600">PyTorch + HuggingFace Transformers</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section>
+                <h2>Project Structure</h2>
+                <div class="bg-gray-900 rounded-2xl p-6 border border-gray-800 font-mono text-xs md:text-sm text-gray-300 overflow-x-auto">
+<pre>commit-message-lora/
+├── data/
+│   └── prepare_dataset.py   <span class="text-gray-500"># Download, clean & sample from Kaggle</span>
+├── src/
+│   ├── config.py            <span class="text-gray-500"># All hyperparameters in one place</span>
+│   ├── dataset.py            <span class="text-gray-500"># HuggingFace Dataset + tokenization</span>
+│   ├── train.py              <span class="text-gray-500"># End-to-end training pipeline</span>
+│   ├── inference.py          <span class="text-gray-500"># Load adapter & generate messages</span>
+│   └── utils.py               <span class="text-gray-500"># Prompt templates & text helpers</span>
+├── commit_lora/              <span class="text-gray-500"># Saved LoRA adapter weights (post-training)</span>
+└── requirements.txt</pre>
+                </div>
+            </section>
+
+            <section>
+                <h2>Quickstart</h2>
+                <p class="!mb-3"><strong class="text-gray-900">1. Install dependencies</strong> &mdash; requires a Kaggle API key at <code class="bg-gray-100 px-1.5 py-0.5 rounded text-xs">~/.kaggle/kaggle.json</code></p>
+                <div class="bg-gray-900 rounded-xl p-4 mb-5 font-mono text-xs text-gray-300 overflow-x-auto">pip install -r requirements.txt</div>
+
+                <p class="!mb-3"><strong class="text-gray-900">2. Prepare the dataset</strong> &mdash; downloads, filters by message length, and samples 5,000 rows to <code class="bg-gray-100 px-1.5 py-0.5 rounded text-xs">data/prepared.csv</code></p>
+                <div class="bg-gray-900 rounded-xl p-4 mb-5 font-mono text-xs text-gray-300 overflow-x-auto">python data/prepare_dataset.py</div>
+
+                <p class="!mb-3"><strong class="text-gray-900">3. Train</strong> &mdash; 2 epochs with 4-bit quantization + LoRA; adapter saved to <code class="bg-gray-100 px-1.5 py-0.5 rounded text-xs">./commit_lora</code></p>
+                <div class="bg-gray-900 rounded-xl p-4 mb-5 font-mono text-xs text-gray-300 overflow-x-auto">python -m src.train</div>
+
+                <p class="!mb-3"><strong class="text-gray-900">4. Run inference</strong></p>
+                <div class="bg-gray-900 rounded-xl p-4 font-mono text-xs text-gray-300 overflow-x-auto"><pre>from src.inference import load_model_for_inference, generate_commit_message
+model, tokenizer = load_model_for_inference()
+print(generate_commit_message("add dark mode", model, tokenizer))
+# → "Add dark mode support with system preference detection"</pre></div>
+            </section>
+
+            <section>
+                <h2>Training Details</h2>
+                <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden mb-4">
+                    <table class="w-full text-sm text-left">
+                        <thead>
+                            <tr class="bg-gray-50 text-gray-500 text-xs uppercase tracking-wide">
+                                <th class="px-5 py-3 font-semibold">Hyperparameter</th>
+                                <th class="px-5 py-3 font-semibold">Value</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100">
+                            <tr><td class="px-5 py-3 font-medium text-gray-900">LoRA rank (r)</td><td class="px-5 py-3 text-gray-600">16</td></tr>
+                            <tr><td class="px-5 py-3 font-medium text-gray-900">LoRA alpha</td><td class="px-5 py-3 text-gray-600">32</td></tr>
+                            <tr><td class="px-5 py-3 font-medium text-gray-900">Dropout</td><td class="px-5 py-3 text-gray-600">0.05</td></tr>
+                            <tr><td class="px-5 py-3 font-medium text-gray-900">Learning rate</td><td class="px-5 py-3 text-gray-600">2e-4</td></tr>
+                            <tr><td class="px-5 py-3 font-medium text-gray-900">Batch size</td><td class="px-5 py-3 text-gray-600">4</td></tr>
+                            <tr><td class="px-5 py-3 font-medium text-gray-900">Gradient accumulation</td><td class="px-5 py-3 text-gray-600">4 steps</td></tr>
+                            <tr><td class="px-5 py-3 font-medium text-gray-900">Epochs</td><td class="px-5 py-3 text-gray-600">2</td></tr>
+                            <tr><td class="px-5 py-3 font-medium text-gray-900">Max sequence length</td><td class="px-5 py-3 text-gray-600">256 tokens</td></tr>
+                            <tr><td class="px-5 py-3 font-medium text-gray-900">Quantization</td><td class="px-5 py-3 text-gray-600">4-bit NF4</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>Fine-tuning a full 1.5B model requires significant GPU memory and time. LoRA inserts small trainable rank-decomposition matrices into the attention layers, cutting trainable parameters by ~99% while achieving comparable task performance &mdash; making the project reproducible on a single consumer GPU (e.g. a T4 on Colab).</p>
+            </section>
+
+            <section>
+                <h2>Challenges</h2>
+                <p>The main challenge was handling the high memory footprint required for fine-tuning even a 1.5B parameter model on limited hardware. Standard full fine-tuning would cause Out-Of-Memory (OOM) errors on a single T4 GPU. Additionally, carefully constructing the prompt templates was crucial to ensure the model didn't hallucinate context that wasn't in the original sloppy commit message.</p>
+            </section>
+
+            <section>
+                <h2>Trade-offs</h2>
+                <p>By choosing LoRA over full fine-tuning, I traded a slight potential drop in absolute maximum model capacity for a massive ~99% reduction in trainable parameters, enabling practical training on consumer hardware. Using 4-bit NF4 quantization slightly degraded the model precision but allowed the training script to run within the strict VRAM constraints of the T4 GPU.</p>
+            </section>
+
+            <section>
+                <h2>Benchmarks</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm text-center">
+                        <h3 class="text-3xl font-bold text-gray-900 mb-2">~99%</h3>
+                        <p class="text-xs font-medium text-gray-500 uppercase tracking-wide">Reduction in Trainable Params</p>
+                        <p class="text-xs text-gray-400 mt-1">Via LoRA and 4-bit NF4 quantization vs full fine-tuning</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm text-center">
+                        <h3 class="text-3xl font-bold text-gray-900 mb-2">1x T4</h3>
+                        <p class="text-xs font-medium text-gray-500 uppercase tracking-wide">Hardware Requirement</p>
+                        <p class="text-xs text-gray-400 mt-1">For both training and fast inference</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h2>GitHub Repository</h2>
+                <p>The fine-tuning pipeline, dataset prep scripts, and inference code are available on GitHub.</p>
+                <a href="https://github.com/sowndappan5/commit-message-lora" target="_blank" class="text-blue-600 hover:underline font-medium"><i class="fab fa-github mr-1"></i> sowndappan5/commit-message-lora</a>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        const root = document.documentElement;
+        const stored = localStorage.getItem('theme');
+        if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            root.classList.add('dark');
+        }
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            root.classList.toggle('dark');
+            localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light');
+        });
+    </script>
+</body>
+</html>
